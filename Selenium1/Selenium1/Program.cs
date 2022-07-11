@@ -23,7 +23,7 @@ else
 {
     Console.WriteLine("LOGIN FAIL");
 }
-//Create a new material record
+//Create a New Material Record
 //Click on Administation
 IWebElement administration = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
 administration.Click();
@@ -34,6 +34,7 @@ TimeMaterial.Click();
 Thread.Sleep(1000);
 //click on Create New
 IWebElement CreateButton = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
+Thread.Sleep(1000);
 CreateButton.Click();
 Thread.Sleep(1000);
 //enter code
@@ -53,10 +54,12 @@ priceTag.SendKeys("20");
 Thread.Sleep(1000);
 //click on save
 IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
+Thread.Sleep(1500);
 saveButton.Click();
 Thread.Sleep(1000);
 //go to the last page
 IWebElement lastPageIcon = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+Thread.Sleep(1500);
 lastPageIcon.Click();
 Thread.Sleep(2000);
 //check successful record creation
@@ -67,13 +70,14 @@ if (newCode.Text == "Tango")
 }
 else
 {
-    Console.WriteLine("Material Record cudn't be created ,TEST FAIL");
+    Console.WriteLine("Material Record couldn't be created ,TEST FAIL");
 }
 //To Check Edit Functionality
+//Go to last page
+IWebElement lastPageEdit = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
 //click on edit
-IWebElement editButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
-editButton.Click();
 Thread.Sleep(1000);
+lastPageEdit.Click();
 //click ,delete existing value and input code
 IWebElement editCodeButton = driver.FindElement(By.Id("Code"));
 editCodeButton.Click();
@@ -91,8 +95,8 @@ IWebElement editPriceNew = driver.FindElement(By.XPath("//*[@id='TimeMaterialEdi
 editPriceNew.Click();
 //edit price
 IWebElement editPrice = driver.FindElement(By.Id("Price"));
-//editPrice.Clear();
-editPrice.SendKeys("30");
+editPrice.SendKeys("15");
+Thread.Sleep(1000);
 //click on save
 IWebElement editSaveButton = driver.FindElement(By.Id("SaveButton"));
 editSaveButton.Click();
@@ -131,7 +135,10 @@ else
 }
 //Check DELETE Functionality
 //Click on delete
-IWebElement DeleteButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[9]/td[5]/a[2]"));
+IWebElement DeleteButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
 Thread.Sleep(1500);
-DeleteButton.Click();  
+DeleteButton.Click();
+Thread.Sleep(1500);
 //Click on OK
+Thread.Sleep(1000);
+driver.SwitchTo().Alert().Accept();
