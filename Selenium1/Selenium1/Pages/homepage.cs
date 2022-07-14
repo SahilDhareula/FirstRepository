@@ -1,23 +1,18 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Selenium1.Utilities;
 namespace Selenium1.Pages
 {
     public class homepage
     { 
-        public void GotoTmPage(IWebDriver driver)
+        public void GotoTmPage(IWebDriver driver) 
         {
             IWebElement administration = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
             administration.Click();
-            Thread.Sleep(1000);
-            //click on Time and material
+            WaitHelpers.WaitToBeClickable(driver, 5,"XPath","/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a");
+            
+            //select Time and material from dropdown
             IWebElement TimeMaterial = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             TimeMaterial.Click();
-            Thread.Sleep(1000);
         }
     }
 }
