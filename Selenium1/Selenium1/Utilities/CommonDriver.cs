@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,19 @@ namespace Selenium1.Utilities
 {
     public class CommonDriver
     {
-        public static IWebDriver driver; // creating webdriver and use this everywhere else 
+        public IWebDriver driver; // creating webdriver and use this everywhere else 
+
+        [SetUp]
+        public void LoginSteps()
+        {
+            driver = new ChromeDriver();
+            loginpage loginObject = new loginpage();
+            loginpage.LoginActions(driver);
+        }
+        [TearDown]
+        public void CloseTestRun()
+        {
+            driver.Quit();
+        }
     }
 }

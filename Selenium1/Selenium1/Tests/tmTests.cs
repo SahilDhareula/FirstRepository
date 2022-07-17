@@ -4,46 +4,33 @@ using Selenium1.Utilities;
 namespace Selenium1.Tests
 {
     [TestFixture]
+    [Parallelizable]
     public class tmTests : CommonDriver
     {
-        [SetUp]
-        public void LoginSteps()
-        {
-            driver = new ChromeDriver();
-            loginpage loginObject = new loginpage();
-            loginpage.LoginActions(driver);
-
-            homepage homepageObj = new homepage();
-            homepageObj.GotoTmPage(driver);
-        }
+        //page objects initialisation
+        homepage homepageObj = new homepage();
+        tmpage tmObject = new tmpage();
 
         [Test, Order(1)]
         public void CreateTmTest()
         {
-            tmpage tmObject = new tmpage();
+            homepageObj.GotoTmPage(driver);
             tmObject.CreateTm(driver);
         }
 
         [Test,Order(2)]
         public void EditTmTest()
         {
-            tmpage tmObject = new tmpage();
+            homepageObj.GotoTmPage(driver);
             tmObject.EditTm(driver);
         }
 
         [Test,Order(3)]
         public void DeleteTmTest()
         {
-            tmpage tmObject = new tmpage();
+            homepageObj.GotoTmPage(driver);
             tmObject.DeleteTm(driver);
         }    
-
-        [TearDown]
-        public void CloseTestRun()
-        {
-            //driver.Quit();
-        }
     }
-
 }
 
