@@ -17,35 +17,31 @@ namespace Selenium1.Tests
             homepageObj.GotoTmPage(driver);
         }
 
-        [Test]
+        [Test, Order(1)]
         public void CreateTmTest()
         {
             tmpage tmObject = new tmpage();
             tmObject.CreateTm(driver);
-
-
         }
 
-        [Test]
+        [Test,Order(2)]
         public void EditTmTest()
         {
             tmpage tmObject = new tmpage();
             tmObject.EditTm(driver);
-
         }
 
-        [Test]
+        [Test,Order(3)]
         public void DeleteTmTest()
         {
             tmpage tmObject = new tmpage();
             tmObject.DeleteTm(driver);
-
         }    
 
         [TearDown]
         public void CloseTestRun()
         {
-            driver.Quit();
+            //driver.Quit();
         }
     }
 
