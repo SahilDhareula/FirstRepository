@@ -47,7 +47,7 @@ namespace Selenium1.Pages
         }
         public void EditTm(IWebDriver driver)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(3500);
             IWebElement lastPageClickIcon = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
             lastPageClickIcon.Click();
 
@@ -101,7 +101,7 @@ namespace Selenium1.Pages
             Thread.Sleep(2000);
             IWebElement gotoLastPageEdit = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             gotoLastPageEdit.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
 
             //to check the edited record
 
@@ -117,7 +117,7 @@ namespace Selenium1.Pages
         }
         public void DeleteTm(IWebDriver driver)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             IWebElement lastPageClickIcon = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
             lastPageClickIcon.Click();
 
@@ -130,15 +130,14 @@ namespace Selenium1.Pages
 
             //to check deleted record
 
+            Thread.Sleep(3000);
             IWebElement deletedCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement deletedTypeCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
             IWebElement deletedDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
             IWebElement deletedPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
-            Assert.That(deletedCode.Text == "Tango1", "Actual code and expected code do not match");
-            Assert.That(deletedTypeCode.Text == "M", "Actual Typecode and expected typecode do not match");
-            Assert.That(deletedDescription.Text == "Charlie1", "Actual description and expected description do not match");
-            Assert.That(deletedPrice.Text == "$30.00", "Actual price and expected price do not match");
+            Assert.That(deletedCode.Text != "Tango1", "Code error. Material record hasn't been deleted");
+            Assert.That(deletedDescription.Text != "Charlie1", "Descrition error.  Material record hasn't been deleted");
+            Assert.That(deletedPrice.Text != "$30.00", "Price error.  Material record hasn't been deleted");
 
         }
     }
