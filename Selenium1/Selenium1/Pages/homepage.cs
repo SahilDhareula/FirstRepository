@@ -16,6 +16,10 @@ namespace Selenium1.Pages
         }
         public void GotoEmployeePage(IWebDriver driver)
         {
+            IWebElement administration = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
+            administration.Click();
+            WaitHelpers.WaitToBeClickable(driver, 5, "XPath", "/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a");
+            
             IWebElement Employees = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[2]/a"));
             Employees.Click();
         }

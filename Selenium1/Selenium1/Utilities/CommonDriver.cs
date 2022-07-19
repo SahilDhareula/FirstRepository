@@ -22,7 +22,7 @@ namespace Selenium1.Utilities
         [TearDown]
         public void CloseTestRun()
         {
-            driver.Quit();
+            //driver.Quit();
         }
     }
 }

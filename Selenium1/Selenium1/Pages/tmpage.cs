@@ -54,6 +54,7 @@ namespace Selenium1.Pages
             IWebElement findCodeRecordCreated = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             if (findCodeRecordCreated.Text == "Tango")
             {
+                Thread.Sleep(1500);
                 IWebElement editButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
                 editButton.Click();
                 Thread.Sleep(1000);
@@ -97,6 +98,7 @@ namespace Selenium1.Pages
 
             //go to last page to see the changes
 
+            Thread.Sleep(2000);
             IWebElement gotoLastPageEdit = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             gotoLastPageEdit.Click();
             Thread.Sleep(2000);
@@ -119,34 +121,25 @@ namespace Selenium1.Pages
             IWebElement lastPageClickIcon = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
             lastPageClickIcon.Click();
 
-            IWebElement recordToBeDeleted = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            if (recordToBeDeleted.Text == "Tango1")
-            {
-                IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
-                deleteButton.Click();
-                Thread.Sleep(1000);
+            IWebElement DeleteButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+            DeleteButton.Click();
 
-                //Click on OK
-                Thread.Sleep(1000);
-                driver.SwitchTo().Alert().Accept();
+            //Click on OK
+            Thread.Sleep(2000);
+            driver.SwitchTo().Alert().Accept();
 
-            }
-            else
-            {
-                Assert.Fail("Record to be deleted not found");
-            }
+            //to check deleted record
 
-            ////to check deleted record
+            IWebElement deletedCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            IWebElement deletedTypeCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
+            IWebElement deletedDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            IWebElement deletedPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
-            //IWebElement deletedCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            //IWebElement deletedTypeCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
-            //IWebElement deletedDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
-            //IWebElement deletedPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+            Assert.That(deletedCode.Text == "Tango1", "Actual code and expected code do not match");
+            Assert.That(deletedTypeCode.Text == "M", "Actual Typecode and expected typecode do not match");
+            Assert.That(deletedDescription.Text == "Charlie1", "Actual description and expected description do not match");
+            Assert.That(deletedPrice.Text == "$30.00", "Actual price and expected price do not match");
 
-            //Assert.That(deletedCode.Text != "Tango1", "Actual code and expected code do not match");
-            //Assert.That(deletedTypeCode.Text != "M", "Actual Typecode and expected typecode do not match");
-            //Assert.That(deletedDescription.Text != "Charlie1", "Actual description and expected description do not match");
-            //Assert.That(deletedPrice.Text != "$30.00", "Actual price and expected price do not match");
         }
     }
 }
