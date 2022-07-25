@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using Selenium1.Utilities;
 namespace Selenium1.Pages
-{ 
+{
     public class homepage
     {
         public void GotoTmPage(IWebDriver driver)
@@ -11,8 +11,10 @@ namespace Selenium1.Pages
             WaitHelpers.WaitToBeClickable(driver, 5, "XPath", "/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a");
 
             //select Time and material from dropdown
+            Thread.Sleep(2000);
             IWebElement TimeMaterial = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             TimeMaterial.Click();
+            Thread.Sleep(2000);
         }
         public void GotoEmployeePage(IWebDriver driver)
         {
@@ -22,6 +24,7 @@ namespace Selenium1.Pages
             
             IWebElement Employees = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[2]/a"));
             Employees.Click();
+            Thread.Sleep(2000);
         }
      
     }

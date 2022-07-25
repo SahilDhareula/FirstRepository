@@ -22,7 +22,7 @@ namespace Selenium1.Tests
         public void EditTmTest()
         {
             homepageObj.GotoTmPage(driver);
-            tmObject.EditTm(driver);
+            tmObject.TmEdit(driver,"p0","p1","p2");
         }
 
         [Test,Order(3)]

@@ -10,19 +10,19 @@ namespace Selenium1.Utilities
 {
     public class CommonDriver
     {
-        public IWebDriver driver; // creating webdriver and use this everywhere else 
+        public IWebDriver driver;
 
         [SetUp]
         public void LoginSteps()
         {
             driver = new ChromeDriver();
-            loginpage loginObject = new loginpage();
+            loginpage loginObj = new loginpage();
             loginpage.LoginActions(driver);
         }
         [TearDown]
         public void CloseTestRun()
         {
-            driver.Quit();
+            // driver.Quit();
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-
-
 namespace Selenium1.Pages
 {
     public class loginpage

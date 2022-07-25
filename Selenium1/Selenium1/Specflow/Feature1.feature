@@ -1,26 +1,26 @@
-﻿Feature: Tm Feature
+﻿Feature: TM Feature
 
- As a TurnUp Portal Admin
- I would like to create, edit and delete Time and Material Records
- So that I can manage Employee Time and Material Records
+As a TurnUp Portal Admin
+I would like to create, edit and delete Time and Material Records
+
 
 @tag1
 Scenario: Create a Material Record with valid details
 	Given Logged in successfully into Turnup Portal
-	When I go ToTime and Material Page
-	When I create a new material record
-	Then Record should be created successfully
+	When I go To Time and Material Page
+	When I create a new material
+	Then Then Record should be created successfully
 
 @tag2
-Scenario: Edit a Material Record
+Scenario Outline: Edit Material Record
 	Given Logged in successfully into Turnup Portal
-	When I go ToTime and Material Page
-	When I edit a created material record
-	Then record should be edited successfully
+	When I go To Time and Material Page
+	When I update '<Code>','<Description>' and '<Price>' of an existing material record 
+	Then Record should have '<Code>','<Description>' and '<Price>' updated
 
-@tag3
-Scenario: Delete a Material Record
-	Given Logged in successfully
-	When I go ToTime and Material Page
-	When I delete a created material record
-	Then record should be deleted successfully
+    Examples:  
+	 | Code      | Description | Price   |
+	 | Vodafone  | Mobile      | $50.00  |
+	 | 2 Degrees | Wifi        | $100.00 |
+
+
