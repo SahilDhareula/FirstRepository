@@ -23,4 +23,9 @@ Scenario Outline: Edit Material Record
 	 | Vodafone  | Mobile      | $50.00  |
 	 | 2 Degrees | Wifi        | $100.00 |
 
-
+@tag3
+Scenario:Delete an existing Material Record
+	Given Logged in successfully into Turnup Portal
+	When I go To Time and Material Page
+	When I delete an existing Record and click on OK to confirm
+	Then record should be deleted sucessfully

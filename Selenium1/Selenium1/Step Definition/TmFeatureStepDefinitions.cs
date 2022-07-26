@@ -56,7 +56,7 @@ namespace Selenium1
             tmObject.TmEdit(driver,p0,p1,p2);
         }
 
-        [Then(@"Record should have '([^']*)','([^']*)' and '\$(.*)' updated")]
+        [Then(@"Record should have '([^']*)','([^']*)' and '([^']*)' updated")]
         public void ThenRecordShouldHaveAndUpadated(string p0, string p1, string p2)
         {
             string EditedCode = tmObject.GetEditedCode(driver);
@@ -67,5 +67,21 @@ namespace Selenium1
             Assert.That(EditedDescription == p1, "Description not Edited");
             Assert.That(EditedPrice == p2, "Price not Edited");
         }
+
+
+        [When(@"I delete an existing Record and click on OK to confirm")]
+        public void WhenIDeleteAnExistingRecordAndClickOnOKToConfirm()
+        {
+            tmObject.DeleteTm(driver);
+        }
+
+        [Then(@"record should be deleted sucessfully")]
+        public void ThenRecordShouldBeDeletedSucessfully()
+        {
+            string DeletedCode = tmObject.GetDeletedCode(driver);
+
+            Assert.That(DeletedCode != "2 Degrees", "Code is not Deleted");
+        }
+
     }
 }

@@ -123,7 +123,6 @@ namespace Selenium1.Pages
             return EditedPrice.Text;
         }
 
-
         public void DeleteTm(IWebDriver driver)
         {
             Thread.Sleep(3000);
@@ -132,16 +131,15 @@ namespace Selenium1.Pages
 
             IWebElement DeleteButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
             DeleteButton.Click();
-
-            //Click on OK
             Thread.Sleep(2000);
+
             driver.SwitchTo().Alert().Accept();
-            WaitHelpers.WaitToBeClickable(driver, 5, "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", "XPATH");
+            Thread.Sleep(2500);
         }
-        public string GetDeletedCode(IWebDriver driver) 
+        public string GetDeletedCode(IWebDriver driver)
         {
-            IWebElement deletedCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            return deletedCode.Text;
+            IWebElement DeletedCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return DeletedCode.Text;
         }
     }
 }
