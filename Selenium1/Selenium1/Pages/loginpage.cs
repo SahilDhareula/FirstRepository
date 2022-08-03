@@ -8,7 +8,6 @@ namespace Selenium1.Pages
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
             Thread.Sleep(1000);
-
             try
             {
                 //Identify and Enter Username

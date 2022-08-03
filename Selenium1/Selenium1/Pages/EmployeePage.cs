@@ -1,9 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Selenium1.Pages
 {
@@ -23,7 +19,7 @@ namespace Selenium1.Pages
 
             //Input Username
             IWebElement usernameTextbox = driver.FindElement(By.Id("Username"));
-            usernameTextbox.SendKeys("Saahil");
+            usernameTextbox.SendKeys("Username");
             Thread.Sleep(1000);
 
             //Input Contact
@@ -73,54 +69,53 @@ namespace Selenium1.Pages
             IWebElement validUsername = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             Assert.That(validUsername.Text == "Saahil", "Unable to create Employee please create again");
         }
-        public void EditEmployee(IWebDriver driver)
+        public void EditEmployee(IWebDriver driver, string name, string username, string contact)
         {
-            Thread.Sleep(3000);
-            IWebElement GoToLastPage = driver.FindElement(By.XPath("//*[@id='usersGrid]/div[4]/a[4]/span"));
-            GoToLastPage.Click();
             Thread.Sleep(2000);
+            IWebElement GoToLastPage = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[4]/a[4]/span"));
+            GoToLastPage.Click();
 
-            IWebElement FindEmployeeCreated = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            if (FindEmployeeCreated.Text == "Saahil")
-            {
-                Thread.Sleep(2000);
-                IWebElement EditEmpButton = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[1]"));
-                EditEmpButton.Click();
-                Thread.Sleep(1000);
-            }
-            else
-            {
-                Assert.Fail("Employee to be edited not found");
-            }
+            IWebElement EditButton = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[1]"));
+            Thread.Sleep(2000);
+            EditButton.Click();
+
             //Click on edit and make changes
+
+            IWebElement NameTextbox = driver.FindElement(By.Id("Name"));
+            NameTextbox.Click();
+            NameTextbox.Clear();
+            NameTextbox.SendKeys(name);
+            Thread.Sleep(2000);
 
             IWebElement EditUsername = driver.FindElement(By.Id("Username"));
             EditUsername.Click();
             EditUsername.Clear();
-            EditUsername.SendKeys("Username");
+            EditUsername.SendKeys(username);
 
-            //Thread.Sleep(3000);
-            //IWebElement EditContactButton = driver.FindElement(By.Id("EditContactButton"));
-            //EditContactButton.Click();
+            IWebElement EditContactButton = driver.FindElement(By.Id("EditContactButton"));
+            EditContactButton.Click();
+            driver.SwitchTo().Frame(0);
 
-            //Thread.Sleep(2000);
-            //IWebElement FirstNameTextbox = driver.FindElement(By.Id("FirstName"));
-            //FirstNameTextbox.Click();
-            //FirstNameTextbox.SendKeys("FirstName");
 
-            //Thread.Sleep(1000);
-            //IWebElement LastNameTextbox = driver.FindElement(By.Id("LastName"));
-            //LastNameTextbox.Click();
-            //LastNameTextbox.SendKeys("LastName");
-            
-            //Thread.Sleep(2000);
-            //IWebElement PhoneTextbox = driver.FindElement(By.Id("Phone"));
-            //PhoneTextbox.Click();
-            //PhoneTextbox.SendKeys("0217654567");
 
-            //Thread.Sleep(2500);
-            //IWebElement SaveContact = driver.FindElement(By.Id("submitButton"));
-            //SaveContact.Click();
+            Thread.Sleep(1000);
+            IWebElement FirstNameTextbox = driver.FindElement(By.Id("FirstName"));
+            FirstNameTextbox.Click();
+            FirstNameTextbox.SendKeys("firstname");
+
+            Thread.Sleep(1000);
+            IWebElement LastNameTextbox = driver.FindElement(By.Id("LastName"));
+            LastNameTextbox.Click();
+            LastNameTextbox.SendKeys("lastname");
+
+            Thread.Sleep(2000);
+            IWebElement PhoneTextbox = driver.FindElement(By.Id("Phone"));
+            PhoneTextbox.Click();
+            PhoneTextbox.SendKeys("0217654567");
+
+            Thread.Sleep(2500);
+            IWebElement SaveContact = driver.FindElement(By.Id("submitButton"));
+            SaveContact.Click();
 
             //Click on Save Button
             Thread.Sleep(2000);

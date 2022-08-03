@@ -26,7 +26,7 @@ namespace Selenium1.Tests
         public void EditEmployee()
         {  
             HomePageObj.GotoEmployeePage(driver); 
-            EmployeePageObj.EditEmployee(driver);
+            EmployeePageObj.EditEmployee(driver,"p0","p1","p2");
         }
 
         [Test, Order(3), Description("Check if the user is able to delete new employee")]
@@ -34,7 +34,6 @@ namespace Selenium1.Tests
         {
             HomePageObj.GotoEmployeePage(driver);
             EmployeePageObj.DeleteEmployee(driver);
-
         }
     }
 }
